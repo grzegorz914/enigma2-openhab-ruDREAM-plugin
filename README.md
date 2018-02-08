@@ -1,5 +1,5 @@
 # enigma2-openhab-ruDREAM-plugin
-This is adaption of enigma2 openHAB plugin (author @druciak)  ruDREAM image LiveXS. 
+This is adaption of enigma2 openHAB plugin (author @druciak) to ruDREAM image LiveXS. 
 
 <div align="left">
         <img width="75%" src="screen-shots/openHAB.PNG" alt="LiveXS General menu" title="LiveXS General menu"</img>
