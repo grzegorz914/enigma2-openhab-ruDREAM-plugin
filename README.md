@@ -1,6 +1,5 @@
 # enigma2-openhab-ruDREAM-plugin
 This is adaption of enigma2 openHAB plugin (autor @druciak) to ruDREAM image LiveXS.
-oryginal repo : https://github.com/druciak/enigma2-plugin-openhab
 
 ![alt text](screen-shots/openHAB.png "LiveXS General menu")
 ![alt text](screen-shots/openHAB1.png "LiveXS Plugin menu")
