@@ -1,0 +1,12 @@
+<setupxml>
+	<setup key="openhab" title="">
+		<item level="0" text="Host" description="" update="1">config.plugins.openHAB.host</item>
+		<item level="0" text="Port" description="" update="1">config.plugins.openHAB.port</item>
+		<item level="0" text="User" description="" update="1">config.plugins.openHAB.user</item>
+		<item level="0" text="Password" description="" update="1">config.plugins.openHAB.password</item>
+		<item level="0" text="Sitemap" description="" update="1">config.plugins.openHAB.sitemap</item>
+		<item level="0" text="Refresh interval" description="" update="1">config.plugins.openHAB.refresh</item>
+		<item level="0" text="Dimmer step" description="" update="1">config.plugins.openHAB.dimmer_step</item>
+		<item level="0" text="Enable debug" description="" update="1">config.plugins.openHAB.debug</item>
+	</setup>
+</setupxml>
