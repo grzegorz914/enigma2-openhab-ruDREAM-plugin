@@ -177,7 +177,7 @@ class SitemapWindow(Screen, ConfigListScreen):
         
         self.refreshTimer = eTimer()
         self.refreshTimer.callback.append(self.refresh_data)
-        self.refreshTimer.start(config_root.refresh.value*100)
+        self.refreshTimer.start(config_root.refresh.value*1000)
     
     def refresh_data(self, reset_index=False):
     
