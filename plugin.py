@@ -97,8 +97,8 @@ class SliderWidget(SitemapWidget, ConfigSlider):
     MAX_VAL = 100
     
     def __init__(self, item, sub_page, increment=5):
+	SitemapWidget.__init__(self, item, sub_page)
         ConfigSlider.__init__(self, default=toint(item.get("state")) if item else 0, increment=increment, limits=(SliderWidget.MIN_VAL, SliderWidget.MAX_VAL))
-        trace("SliderWidget initialized")
 
     def handleKey(self, key):
         if key == KEY_OK:
