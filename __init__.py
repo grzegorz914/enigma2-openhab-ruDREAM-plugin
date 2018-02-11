@@ -33,11 +33,11 @@ def initLog():
         pass
 
 def debug(message, *args):
-    if config_root.debug.value >= DEBUG_LEVEL:
+    if int(config_root.debug.value) >= DEBUG_LEVEL:
         log(message, *args)
 
 def trace(message, *args):
-    if config_root.debug.value >= TRACE_LEVEL:
+    if int(config_root.debug.value) >= TRACE_LEVEL:
         log(message, *args)
 
 def log(message, *args):
@@ -51,11 +51,11 @@ def initConfig():
     config_root.user = ConfigText(fixed_size=False)
     config_root.password = ConfigPassword()
     config_root.sitemap = ConfigText(default="default", fixed_size=False)
-    config_root.refresh = ConfigSelection(default=3, choices=[1, 2, 3, 5, 10])
-    config_root.dimmer_step = ConfigSelection(default=5, choices=[1, 2, 3, 5, 10])
-    config_root.debug = ConfigSelection(default=OFF_LEVEL, choices=[(OFF_LEVEL, _("no")), 
-                                                                    (DEBUG_LEVEL, _("debug")), 
-                                                                    (TRACE_LEVEL, _("trace"))])
+    config_root.refresh = ConfigSelection(default='3', choices=['1', '2', '3', '5', '10'])
+    config_root.dimmer_step = ConfigSelection(default='5', choices=['1', '2', '3', '5', '10'])
+    config_root.debug = ConfigSelection(default=OFF_LEVEL, choices=[(str(OFF_LEVEL), _("no")),
+                                                                    (str(DEBUG_LEVEL), _("debug")),
+                                                                    (str(TRACE_LEVEL), _("trace"))])
     return config_root
 
 config_root = initConfig()
