@@ -43,7 +43,7 @@ class StaticWidget(SitemapWidget, ConfigSelection):
         ConfigSelection.__init__(self, choices=[value])
        
     def handleKey(self, key):
-            pass
+        pass
 
 
 class SwitchWidget(SitemapWidget, ConfigSelection):
@@ -85,26 +85,25 @@ class SelectionWidget(SitemapWidget, ConfigSelection):
         ConfigSelection.__init__(self, default=item.get("state") if item else None, choices=choices)
 
 
-    def toint(str_val, default=0):
-        try:
-            return int(str_val)
-        except ValueError:
-            return default
+def toint(str_val, default=0):
+    try:
+        return int(str_val)
+    except ValueError:
+        return default
 
 class SliderWidget(SitemapWidget, ConfigSlider):
-	
     
     def __init__(self, item, sub_page, increment=5):
-	SitemapWidget.__init__(self, item, sub_page)
+        SitemapWidget.__init__(self, item, sub_page)
         ConfigSlider.__init__(self, default=toint(item.get("state")) if item else 0, increment=increment)
-  		  
-      def handleKey(self, key):		      def handleKey(self, key):
-          if key == KEY_OK:		          if key == KEY_OK:
-              trace("[SliderWidget] KEY_OK pressed")		              trace("[SliderWidget] KEY_OK pressed")
-              if self.value == SliderWidget.MIN_VAL:		 +            if self.value == self.min:
-                  self.value = SliderWidget.MAX_VAL		 +                self.value = self.max
-              else:		              else:
-                  self.value = SliderWidget.MIN_VAL		 +                self.value = self.min
+
+    def handleKey(self, key):
+        if key == KEY_OK:
+            trace("[SliderWidget] KEY_OK pressed")
+            if self.value == self.min:
+                self.value = self.max
+            else:
+                self.value = self.min
             self.send_command()
         else:
             ConfigSlider.handleKey(self, key)
@@ -134,7 +133,7 @@ class ShutterWidget(SitemapWidget, ConfigSelection):
         else:
             ConfigSelection.handleKey(self, key)
 
-
+ 
 class FrameWidget(SitemapWidget, ConfigNothing):
     
     def __init__(self, item, sub_page):
@@ -142,41 +141,39 @@ class FrameWidget(SitemapWidget, ConfigNothing):
         ConfigNothing.__init__(self)
 	
 	
-		  def tofloat(str_val, default=0.0):
-      try:
-          return float(str_val)
-      except ValueError:
-          return default
+def tofloat(str_val, default=0.0):
+    try:
+        return float(str_val)
+    except ValueError:
+        return default
   
-  class SetpointWidget(SitemapWidget, ConfigSlider):
+class SetpointWidget(SitemapWidget, ConfigSlider):
       
-      def __init__(self, item, sub_page, min_val, max_val, step):
-          SitemapWidget.__init__(self, item, sub_page)
-          ConfigSlider.__init__(self, default=tofloat(item.get("state")) if item else 0, increment=step, limits=(min_val, max_val))
+    def __init__(self, item, sub_page, min_val, max_val, step):
+        SitemapWidget.__init__(self, item, sub_page)
+        ConfigSlider.__init__(self, default=tofloat(item.get("state")) if item else 0, increment=step, limits=(min_val, max_val))
   
-      def handleKey(self, key):
-          if key == KEY_OK:
-              trace("[SliderWidget] KEY_OK pressed")
-              if self.value == self.min:
-                  self.value = self.max
-              else:
-                  self.value = self.min
-              self.send_command()
-          else:
-              ConfigSlider.handleKey(self, key)
+    def handleKey(self, key):
+        if key == KEY_OK:
+            trace("[SliderWidget] KEY_OK pressed")
+            if self.value == self.min:
+                self.value = self.max
+            else:
+                self.value = self.min
+            self.send_command()
+        else:
+            ConfigSlider.handleKey(self, key)
   
-      def getMulti(self, selected):
-              self.checkValues()
-              return ("text", self.getText())
+    def getMulti(self, selected):
+            self.checkValues()
+            return ("text", self.getText())
   
-      def getText(self):
-              return "%.1f" % self.value
+    def getText(self):
+            return "%.1f" % self.value
   
-      def fromstring(self, value):
-          return float(value)
-  
-  
-
+    def fromstring(self, value):
+        return float(value)
+   
 
 class SitemapWindow(Screen, ConfigListScreen):
 
@@ -289,7 +286,7 @@ class SitemapWindow(Screen, ConfigListScreen):
                 self.load_widgets(items, widget_data)
 		
             elif widget_type == "Setpoint":
-                 items.append(getConfigListEntry(widget_label1, SetpointWidget(widget_item, sub_page, widget_data["minValue"], widget_data["maxValue"], widget_data["step"])))
+                items.append(getConfigListEntry(widget_label1, SetpointWidget(widget_item, sub_page, widget_data["minValue"], widget_data["maxValue"], widget_data["step"])))
 
             else:
                 debug("Skipping unknown widget: %s", widget_type)
