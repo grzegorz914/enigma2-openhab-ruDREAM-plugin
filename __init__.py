@@ -43,6 +43,21 @@ def trace(message, *args):
 def log(message, *args):
     with open(LOG_FILE, "aw") as f:
         f.write((time.ctime() + ": " + message + "\n") % args)
+        
+def ConfigIntSelection(choices, default=None):
+
+    def int_converter(cfg_elem):
+        try:
+            cfg_elem.int_value = None if cfg_elem.value is None else int(cfg_elem.value)
+        except ValueError:
+            cfg_elem.int_value = None
+    
+    def make_str_choices(c):
+        return [str(i) if type(i) == int else (str(i[0]), i[1]) for i in c]
+    
+    ctrl = ConfigSelection(choices, default=None if default is None else str(default))
+    ctrl.addNotifier(int_converter)
+    return ctrl
 
 def initConfig():
     config_root = config.plugins.openHAB = ConfigSubsection()
