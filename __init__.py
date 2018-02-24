@@ -33,11 +33,11 @@ def initLog():
         pass
 
 def debug(message, *args):
-    if config_root.debug.value >= DEBUG_LEVEL:
+    if int(config_root.debug.value) >= DEBUG_LEVEL:
         log(message, *args)
 
 def trace(message, *args):
-    if config_root.debug.value >= TRACE_LEVEL:
+    if int(config_root.debug.value) >= TRACE_LEVEL:
         log(message, *args)
 
 def log(message, *args):
