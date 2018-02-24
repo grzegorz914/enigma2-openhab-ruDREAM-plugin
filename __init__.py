@@ -68,7 +68,8 @@ def initConfig():
     config_root.sitemap = ConfigText(default="default", fixed_size=False)
     config_root.refresh = ConfigIntSelection([1, 2, 3, 5, 10], default=3)
     config_root.dimmer_step = ConfigIntSelection([1, 2, 3, 5, 10], default=5)
-    config_root.graphic_sliders = ConfigYesNo(default=False)
+    config_root.graphic_sliders = ConfigIntSelection([(0, _("Number")), (1, _("Slider"))], 
+                                           default=0)
     config_root.debug = ConfigIntSelection([(OFF_LEVEL, _("no")), (DEBUG_LEVEL, _("debug")), (TRACE_LEVEL, _("trace"))], 
                                            default=OFF_LEVEL)
     return config_root
