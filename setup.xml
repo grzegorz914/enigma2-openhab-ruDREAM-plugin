@@ -1,5 +1,5 @@
 <setupxml>
-	<setup key="openhab" title="">
+	<setup key="openhab" title="openHAB">
 		<item level="0" text="Host" description="" update="1">config.plugins.openHAB.host</item>
 		<item level="0" text="Port" description="" update="1">config.plugins.openHAB.port</item>
 		<item level="0" text="User" description="" update="1">config.plugins.openHAB.user</item>
