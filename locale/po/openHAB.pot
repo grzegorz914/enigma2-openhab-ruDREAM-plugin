@@ -73,7 +73,7 @@ msgid "Enable debug"
 msgstr ""
 
 #: src/setup.py:39
-msgid "Graphic sliders"
+msgid "Slider style"
 msgstr ""
 
 #: src/setup.py:41
