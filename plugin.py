@@ -114,7 +114,7 @@ class SliderWidget(SitemapWidget, ConfigSlider):
             if self.use_slider:
                   return ("slider", self.value, self.max)
               else:
-                  return ("text", self.getText()))
+                  return ("text", self.getText())
 
     def getText(self):
             return "%d %%" % self.value
