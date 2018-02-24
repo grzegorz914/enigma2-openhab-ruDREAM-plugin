@@ -337,7 +337,7 @@ class SitemapWindow(Screen, ConfigListScreen):
                 create_client()
                 self.sitemap = config_root.sitemap.value
                 self.refresh_data(reset_index=True)
-            self.refreshTimer.start(config_root.refresh.value*1000)
+            self.refreshTimer.start(config_root.refresh.int_value*1000)
     
         self.refreshTimer.stop()
         self.session.openWithCallback(on_close, SetupWindow)
