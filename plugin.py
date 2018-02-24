@@ -400,7 +400,7 @@ class wopenHABPlugin(resource.Resource):
 		ret_string  ="<html>"
 		ret_string +="<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\""
 		ret_string +="\"http://www.w3.org/TR/html4/loose.dtd\">"
-		ret_string +="<head><title>EPGSmart</title>"
+		ret_string +="<head><title>openHAB</title>"
 		ret_string +="<link rel=\"shortcut icon\" type=\"/web-data/image/x-icon\" href=\"/public/images/favicon.ico\">"
 		ret_string +="<meta content=\"text/html; charset=UTF-8\" http-equiv=\"content-type\">"
 		ret_string +="</head>"
