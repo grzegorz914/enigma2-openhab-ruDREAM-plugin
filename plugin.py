@@ -157,10 +157,10 @@ class SetpointWidget(SitemapWidget, ConfigSlider):
         SitemapWidget.__init__(self, item, sub_page)
         ConfigSlider.__init__(self, default=tofloat(item.get("state")) if item else 0, increment=step, limits=(min_val, max_val))
         stateDescription = self.item.get("stateDescription")
-          if stateDescription and stateDescription.get("pattern"):
-              self.pattern = stateDescription.get("pattern").encode("UTF-8")
-          else:
-              self.pattern = "%.1f"
+        if stateDescription and stateDescription.get("pattern"):
+            self.pattern = stateDescription.get("pattern").encode("UTF-8")
+        else:
+            self.pattern = "%.1f"
 
     def handleKey(self, key):
         if key == KEY_OK:
