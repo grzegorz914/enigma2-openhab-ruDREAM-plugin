@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 
-from Components.config import config, ConfigSubsection, ConfigText, ConfigNumber, ConfigPassword, ConfigSelection
+from Components.config import config, ConfigSubsection, ConfigText, ConfigNumber, ConfigPassword, ConfigSelection,ConfigYesNo
 from Components.Language import language
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_LANGUAGE
 import os, gettext, time
@@ -54,6 +54,7 @@ def initConfig():
     config_root.sitemap = ConfigText(default="default", fixed_size=False)
     config_root.refresh = ConfigSelection(default='3', choices=['1', '2', '3', '5', '10'])
     config_root.dimmer_step = ConfigSelection(default='5', choices=['1', '2', '3', '5', '10'])
+    config_root.graphic_sliders = ConfigYesNo(default=False)
     config_root.debug = ConfigSelection(default=OFF_LEVEL, choices=[(str(OFF_LEVEL), _("no")),
                                                                     (str(DEBUG_LEVEL), _("debug")),
                                                                     (str(TRACE_LEVEL), _("trace"))])
