@@ -41,12 +41,86 @@ class StaticWidget(SitemapWidget, ConfigSelection):
     def __init__(self, item, sub_page, value):
         SitemapWidget.__init__(self, item, sub_page)
         ConfigSelection.__init__(self, choices=[value])
-       
+    
     def handleKey(self, key):
         pass
 
 
 class SwitchWidget(SitemapWidget, ConfigSelection):
+    
+    def __init__(self, item, sub_page, mapping=None):
+        SitemapWidget.__init__(self, item, sub_page)
+        
+        item_state = item.get("state") if item else None
+        if mapping:
+            if not isinstance(mapping, list):
+                mapping = [mapping]
+            choices = map(lambda mi: (mi["command"], mi["label"]), mapping)
+            if len(mapping) == 1 and item_state:
+                # button mode
+                if mapping[0]["command"] == item_state:
+                    # disabled: empty text
+                    choices = [(item_state, "")] 
+                else:
+                    # add ability to send mapped command
+                    choices.append((item_state, mapping[0]["label"]))
+        else:
+            choices = [("ON", _("on")), ("OFF", _("off"))]
+            
+        ConfigSelection.__init__(self, choices=choices, default=item_state)
+
+    def handleKey(self, key):
+        if key == KEY_OK:
+            trace("[SwitchWidget] KEY_OK pressed")
+            self.selectNext()
+            self.send_command()
+        else:
+            ConfigSelection.handleKey(self, key)
+
+
+class SelectionWidget(SitemapWidget, ConfigSelection):
+    
+    def __init__(self, item, sub_page, choices):
+        SitemapWidget.__init__(self, item, sub_page)
+        ConfigSelection.__init__(self, default=item.get("state") if item else None, choices=choices)
+
+
+def toint(str_val, default=0):
+    try:
+        return int(str_val)
+    except ValueError:
+        return default
+
+class SliderWidget(SitemapWidget, ConfigSlider):
+    
+    def __init__(self, item, sub_page, increment=5, use_slider=False):
+        SitemapWidget.__init__(self, item, sub_page)
+        ConfigSlider.__init__(self, default=toint(item.get("state")) if item else 0, increment=increment)
+        self.use_slider = use_slider
+
+    def handleKey(self, key):
+        if key == KEY_OK:
+            trace("[SliderWidget] KEY_OK pressed")
+            if self.value == self.min:
+                self.value = self.max
+            else:
+                self.value = self.min
+            self.send_command()
+        else:
+            ConfigSlider.handleKey(self, key)
+
+    def getMulti(self, selected):
+            self.checkValues()
+            if self.use_slider:
+                return ("slider", self.value, self.max)
+            else:
+                return ("text", self.getText())
+
+    def getText(self):
+            return "%d %%" % self.value
+
+
+class ShutterWidget(SitemapWidget, ConfigSelection):
     
     def __init__(self, item, sub_page, mapping=None):
         SitemapWidget.__init__(self, item, sub_page)
