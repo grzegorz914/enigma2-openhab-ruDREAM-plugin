@@ -284,7 +284,7 @@ class SitemapWindow(Screen, ConfigListScreen):
                                                     SwitchWidget(widget_item, sub_page, mapping=widget_data.get("mapping") or widget_data.get("mappings"))))
 
             elif widget_type == "Slider":
-                items.append(getConfigListEntry(widget_label1, SliderWidget(widget_item, sub_page, increment=int(config_root.dimmer_step.int_value), use_slider=int(config_root.slider_style.value))))
+                items.append(getConfigListEntry(widget_label1, SliderWidget(widget_item, sub_page, increment=int(config_root.dimmer_step.value), use_slider=int(config_root.slider_style.value))))
 
             elif widget_type == "Selection":
                 choices = map(lambda item: (item["command"], item["label"]), widget_data.get("mapping") or widget_data["mappings"])
