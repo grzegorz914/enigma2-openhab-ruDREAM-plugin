@@ -7,7 +7,7 @@
 		<item level="0" text="Sitemap" description="" update="1">config.plugins.openHAB.sitemap</item>
 		<item level="0" text="Refresh interval" description="" update="1">config.plugins.openHAB.refresh</item>
 		<item level="0" text="Dimmer step" description="" update="1">config.plugins.openHAB.dimmer_step</item>
-		<item level="0" text="Slider style" description="" update="1">config.plugins.openHAB.graphic_sliders</item>
+		<item level="0" text="Slider style" description="" update="1">config.plugins.openHAB.slider_style</item>
 		<item level="0" text="Enable debug" description="" update="1">config.plugins.openHAB.debug</item>
 	</setup>
 </setupxml>
