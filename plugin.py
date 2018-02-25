@@ -110,7 +110,7 @@ class SliderWidget(SitemapWidget, ConfigSlider):
             ConfigSlider.handleKey(self, key)
 
     def getMulti(self, selected):
-        self.checkValues()
+
         if self.use_slider:
             return ConfigSlider.getMulti(self, selected)
         else:
